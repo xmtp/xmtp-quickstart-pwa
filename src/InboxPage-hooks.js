@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FloatingInbox } from "./FloatingInbox-hooks";
+import { FloatingInbox } from "./FloatingInbox-hooks-pwa";
 import styled from "styled-components";
 import { ethers } from "ethers";
 
