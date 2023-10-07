@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ethers } from "ethers";
+import { Wallet } from "ethers";
 import { Client, useClient } from "@xmtp/react-sdk";
 import { ConversationContainer } from "./ConversationContainer";
 
@@ -120,9 +120,8 @@ export default function Home({ wallet, env }) {
   const connectWallet = async () => {
     if (typeof window.ethereum !== "undefined") {
       try {
-        await window.ethereum.enable();
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        setSigner(provider.getSigner());
+        const signer = Wallet.createRandom();
+        setSigner(signer);
         setIsConnected(true);
       } catch (error) {
         console.error("User rejected request", error);
