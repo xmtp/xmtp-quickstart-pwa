@@ -118,16 +118,12 @@ export default function Home({ wallet, env }) {
   }, [wallet, signer, client]);
 
   const connectWallet = async () => {
-    if (typeof window.ethereum !== "undefined") {
-      try {
-        const signer = Wallet.createRandom();
-        setSigner(signer);
-        setIsConnected(true);
-      } catch (error) {
-        console.error("User rejected request", error);
-      }
-    } else {
-      console.error("Metamask not found");
+    try {
+      const signer = Wallet.createRandom();
+      setSigner(signer);
+      setIsConnected(true);
+    } catch (error) {
+      console.error("User rejected request", error);
     }
   };
 
