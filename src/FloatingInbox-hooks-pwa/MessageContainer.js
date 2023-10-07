@@ -13,10 +13,11 @@ const styles = {
     flexDirection: "column",
     justifyContent: "space-between",
     height: "100%",
+    fontSize: "1.2em", // Increased font size for mobile
   },
   messagesList: {
-    paddingLeft: "10px",
-    paddingRight: "10px",
+    paddingLeft: "15px", // Increased padding for mobile
+    paddingRight: "15px", // Increased padding for mobile
     margin: "0px",
     alignItems: "flex-start",
     flexGrow: 1,

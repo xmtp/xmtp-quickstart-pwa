@@ -4,25 +4,27 @@ const styles = {
   newMessageContainer: {
     display: "flex",
     alignItems: "center",
-    paddingLeft: "10px",
-    paddingRight: "10px",
+    paddingLeft: "15px",
+    paddingRight: "15px",
     flexWrap: "wrap",
   },
   messageInputField: {
     flexGrow: 1,
-    padding: "5px",
+    padding: "10px",
     border: "1px solid #ccc",
     borderRadius: "5px",
+    fontSize: "1.2em", // Increased font size for mobile
   },
   sendButton: {
-    padding: "5px 10px",
-    marginLeft: "5px",
+    padding: "10px 15px",
+    marginLeft: "10px",
     border: "1px solid #ccc",
     cursor: "pointer",
     borderRadius: "5px",
     display: "flex",
     alignItems: "center",
     textAlign: "center",
+    fontSize: "1.2em", // Increased font size for mobile
   },
 };
 

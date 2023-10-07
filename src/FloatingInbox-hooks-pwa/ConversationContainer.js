@@ -21,6 +21,7 @@ export const ConversationContainer = ({
   const styles = {
     conversations: {
       height: "100%",
+      fontSize: "1.2em", // Increased font size
     },
     conversationList: {
       overflowY: "auto",
@@ -29,17 +30,29 @@ export const ConversationContainer = ({
       listStyle: "none",
       overflowY: "scroll",
     },
+    smallLabel: {
+      fontSize: "1.5em", // Increased font size
+    },
+    messageButtonContainer: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+    },
     createNewButton: {
+      display: "block",
       border: "1px",
-      padding: "5px",
+      padding: "10px",
       borderRadius: "5px",
       marginTop: "10px",
+      fontSize: "1.2em", // Increased font size
     },
     peerAddressInput: {
       width: "100%",
-      padding: "10px",
+      padding: "15px",
       boxSizing: "border-box",
       border: "0px solid #ccc",
+      fontSize: "1.2em", // Increased font size
     },
   };
 
@@ -49,30 +62,31 @@ export const ConversationContainer = ({
 
   const handleSearchChange = async (e) => {
     setSearchTerm(e.target.value);
+    console.log("handleSearchChange", e.target.value);
     setMessage("Searching...");
     const addressInput = e.target.value;
     const isEthDomain = /\.eth$/.test(addressInput);
-    if (!isEthDomain) {
-      return;
-    }
-    setLoadingResolve(true);
-    try {
-      const provider = new ethers.providers.CloudflareProvider();
-      const resolvedAddress = await provider.resolveName(addressInput);
-
-      if (resolvedAddress && isValidEthereumAddress(resolvedAddress)) {
-        processEthereumAddress(resolvedAddress);
-        setSearchTerm(resolvedAddress); // <-- Add this line
-      } else {
-        setMessage("Invalid Ethereum address");
-        setPeerAddress(null);
-        //setCanMessage(false);
+    let resolvedAddress = addressInput;
+    if (isEthDomain) {
+      setLoadingResolve(true);
+      try {
+        const provider = new ethers.providers.CloudflareProvider();
+        resolvedAddress = await provider.resolveName(resolvedAddress);
+      } catch (error) {
+        console.log(error);
+        setMessage("Error resolving address");
+      } finally {
+        setLoadingResolve(false);
       }
-    } catch (error) {
-      console.log(error);
-      setMessage("Error resolving address");
-    } finally {
-      setLoadingResolve(false);
+    }
+    console.log("resolvedAddress", resolvedAddress);
+    if (resolvedAddress && isValidEthereumAddress(resolvedAddress)) {
+      processEthereumAddress(resolvedAddress);
+      setSearchTerm(resolvedAddress); // <-- Add this line
+    } else {
+      setMessage("Invalid Ethereum address");
+      setPeerAddress(null);
+      //setCanMessage(false);
     }
   };
 
@@ -117,8 +131,8 @@ export const ConversationContainer = ({
             }}
           />
           {peerAddress && canMessage && !conversationFound && (
-            <>
-              {message && <small>{message}</small>}
+            <div style={styles.messageButtonContainer}>
+              {message && <small style={styles.smallLabel}>{message}</small>}
               <button
                 style={styles.createNewButton}
                 onClick={() => {
@@ -126,7 +140,7 @@ export const ConversationContainer = ({
                 }}>
                 Create new conversation
               </button>
-            </>
+            </div>
           )}
         </ul>
       )}

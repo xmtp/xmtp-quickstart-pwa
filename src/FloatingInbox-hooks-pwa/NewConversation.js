@@ -8,6 +8,7 @@ const styles = {
     flexDirection: "column",
     justifyContent: "flex-end",
     height: "100%",
+    fontSize: "1.2em", // Increased font size for mobile
   },
 };
 

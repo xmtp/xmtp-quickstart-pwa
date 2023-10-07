@@ -18,33 +18,30 @@ export const ListConversations = ({
       borderBottom: "1px solid #e0e0e0",
       cursor: "pointer",
       backgroundColor: "#f0f0f0",
-      padding: "10px",
+      padding: "15px", // Increased padding for mobile
       transition: "background-color 0.3s ease",
-      ":hover": {
-        backgroundColor: "lightblue",
-      },
     },
     conversationDetails: {
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
       width: "75%",
-      marginLeft: "10px",
+      marginLeft: "15px", // Increased margin for mobile
       overflow: "hidden",
     },
     conversationName: {
-      fontSize: "16px",
+      fontSize: "20px", // Increased font size for mobile
       fontWeight: "bold",
     },
     messagePreview: {
-      fontSize: "14px",
+      fontSize: "18px", // Increased font size for mobile
       color: "#666",
       whiteSpace: "nowrap",
       overflow: "hidden",
       textOverflow: "ellipsis",
     },
     conversationTimestamp: {
-      fontSize: "12px",
+      fontSize: "16px", // Increased font size for mobile
       color: "#999",
       width: "25%",
       textAlign: "right",

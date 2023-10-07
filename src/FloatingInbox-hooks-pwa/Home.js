@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Wallet } from "ethers";
+import { ethers, Wallet } from "ethers";
 import { Client, useClient } from "@xmtp/react-sdk";
 import { ConversationContainer } from "./ConversationContainer";
 
@@ -38,7 +38,7 @@ export default function Home({ wallet, env }) {
       left: "5px",
       background: "transparent",
       border: "none",
-      fontSize: "10px",
+      fontSize: "20px", // Increased font size
       cursor: "pointer",
     },
     widgetHeader: {
@@ -56,11 +56,13 @@ export default function Home({ wallet, env }) {
     conversationHeaderH4: {
       margin: "0px",
       padding: "4px",
+      fontSize: "20px", // Increased font size
     },
     backButton: {
       border: "0px",
       background: "transparent",
       cursor: "pointer",
+      fontSize: "20px", // Increased font size
     },
     widgetContent: {
       flexGrow: 1,
@@ -80,12 +82,13 @@ export default function Home({ wallet, env }) {
       color: "#000",
       justifyContent: "center",
       border: "1px solid grey",
-      padding: "10px",
+      padding: "20px", // Increased padding
       borderRadius: "5px",
+      fontSize: "20px", // Increased font size
     },
     widgetFooter: {
       padding: "5px",
-      fontSize: "12px",
+      fontSize: "20px", // Increased font size
       textAlign: "center",
       display: "flex",
       alignItems: "center",
@@ -118,6 +121,21 @@ export default function Home({ wallet, env }) {
   }, [wallet, signer, client]);
 
   const connectWallet = async () => {
+    if (typeof window.ethereum !== "undefined") {
+      try {
+        await window.ethereum.enable();
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        setSigner(provider.getSigner());
+        setIsConnected(true);
+      } catch (error) {
+        console.error("User rejected request", error);
+      }
+    } else {
+      console.error("Metamask not found");
+    }
+  };
+
+  const connectWalletBurner = async () => {
     try {
       const signer = Wallet.createRandom();
       setSigner(signer);
@@ -126,7 +144,6 @@ export default function Home({ wallet, env }) {
       console.error("User rejected request", error);
     }
   };
-
   const getAddress = async (signer) => {
     try {
       return await signer?.getAddress();
@@ -178,8 +195,7 @@ export default function Home({ wallet, env }) {
       {isOpen && (
         <div
           style={styles.uContainer}
-          className={"FloatingInbox" + (isOnNetwork ? "expanded" : "")}
-        >
+          className={"FloatingInbox" + (isOnNetwork ? "expanded" : "")}>
           {isConnected && (
             <button style={styles.logoutBtn} onClick={handleLogout}>
               Logout
@@ -193,8 +209,7 @@ export default function Home({ wallet, env }) {
                     style={styles.backButton}
                     onClick={() => {
                       setSelectedConversation(null);
-                    }}
-                  >
+                    }}>
                     ←
                   </button>
                 )}
@@ -205,7 +220,7 @@ export default function Home({ wallet, env }) {
           <div style={styles.widgetContent}>
             {!isConnected && (
               <div style={styles.xmtpContainer}>
-                <button style={styles.btnXmtp} onClick={connectWallet}>
+                <button style={styles.btnXmtp} onClick={connectWalletBurner}>
                   Connect Wallet
                 </button>
               </div>
@@ -254,7 +269,7 @@ function SVGLogo({ parentClass, size, theme }) {
           transition: transform 0.5s ease;
         }
         .powered .logo{
-          width:12px !important;
+          width:24px !important; // Increased logo size
           margin-left:2px;
           margin-right:2px;
         }
@@ -275,8 +290,7 @@ function SVGLogo({ parentClass, size, theme }) {
         className={"logo " + uniqueClassLogo}
         style={logoStyles.container}
         viewBox="0 0 462 462"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+        xmlns="http://www.w3.org/2000/svg">
         <path
           fill={color}
           d="M1 231C1 103.422 104.422 0 232 0C359.495 0 458 101.5 461 230C461 271 447 305.5 412 338C382.424 365.464 332 369.5 295.003 349C268.597 333.767 248.246 301.326 231 277.5L199 326.5H130L195 229.997L132 135H203L231.5 184L259.5 135H331L266 230C266 230 297 277.5 314 296C331 314.5 362 315 382 295C403.989 273.011 408.912 255.502 409 230C409.343 131.294 330.941 52 232 52C133.141 52 53 132.141 53 231C53 329.859 133.141 410 232 410C245.674 410 258.781 408.851 271.5 406L283.5 456.5C265.401 460.558 249.778 462 232 462C104.422 462 1 358.578 1 231Z"
@@ -305,7 +319,7 @@ export const loadKeys = (walletAddress) => {
 export const storeKeys = (walletAddress, keys) => {
   localStorage.setItem(
     buildLocalStorageKey(walletAddress),
-    Buffer.from(keys).toString(ENCODING)
+    Buffer.from(keys).toString(ENCODING),
   );
 };
 

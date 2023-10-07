@@ -3,19 +3,19 @@ import React from "react";
 const styles = {
   messageContent: {
     backgroundColor: "lightblue",
-    padding: "5px 10px",
+    padding: "10px 20px", // Increased padding for mobile
     alignSelf: "flex-start",
     textAlign: "left",
     display: "inline-block",
-    margin: "5px",
-    borderRadius: "5px",
+    margin: "10px", // Increased margin for mobile
+    borderRadius: "10px", // Increased border radius for mobile
     maxWidth: "80%",
     wordBreak: "break-word",
     cursor: "pointer",
     listStyle: "none",
   },
   renderedMessage: {
-    fontSize: "12px",
+    fontSize: "16px", // Increased font size for mobile
     wordBreak: "break-word",
     padding: "0px",
   },
@@ -37,7 +37,7 @@ const styles = {
     justifyContent: "flex-end",
   },
   timeStamp: {
-    fontSize: "8px",
+    fontSize: "12px", // Increased font size for mobile
     color: "grey",
   },
 };
