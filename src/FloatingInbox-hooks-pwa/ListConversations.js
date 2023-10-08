@@ -11,68 +11,38 @@ export const ListConversations = ({
   const [streamedConversations, setStreamedConversations] = useState([]);
 
   const styles = {
-      conversationListItem: {
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        borderBottom: "1px solid #e0e0e0",
-        cursor: "pointer",
-        backgroundColor: "#f0f0f0",
-        padding: "20px", // Increased padding for mobile
-        transition: "background-color 0.3s ease",
-      },
+    conversationListItem: {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
       borderBottom: "1px solid #e0e0e0",
       cursor: "pointer",
       backgroundColor: "#f0f0f0",
-      padding: "15px", // Increased padding for mobile
+      padding: "20px",
       transition: "background-color 0.3s ease",
+      color: "red",
     },
     conversationDetails: {
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
       width: "75%",
-      marginLeft: "20px", // Increased margin for mobile
-      overflow: "hidden",
-    },
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start",
-      width: "75%",
-      marginLeft: "15px", // Increased margin for mobile
+      marginLeft: "20px",
       overflow: "hidden",
     },
     conversationName: {
-      fontSize: "22px", // Increased font size for mobile
+      fontSize: "22px",
       fontWeight: "bold",
     },
     messagePreview: {
-      fontSize: "20px", // Increased font size for mobile
-      color: "#666",
-      whiteSpace: "nowrap",
-      overflow: "hidden",
-      textOverflow: "ellipsis",
-    },
-      fontSize: "18px", // Increased font size for mobile
+      fontSize: "20px",
       color: "#666",
       whiteSpace: "nowrap",
       overflow: "hidden",
       textOverflow: "ellipsis",
     },
     conversationTimestamp: {
-      fontSize: "18px", // Increased font size for mobile
-      color: "#999",
-      width: "25%",
-      textAlign: "right",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-end",
-      justifyContent: "space-between",
-    },
-      fontSize: "16px", // Increased font size for mobile
+      fontSize: "18px",
       color: "#999",
       width: "25%",
       textAlign: "right",
