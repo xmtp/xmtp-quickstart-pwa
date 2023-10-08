@@ -11,7 +11,16 @@ export const ListConversations = ({
   const [streamedConversations, setStreamedConversations] = useState([]);
 
   const styles = {
-    conversationListItem: {
+      conversationListItem: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        borderBottom: "1px solid #e0e0e0",
+        cursor: "pointer",
+        backgroundColor: "#f0f0f0",
+        padding: "20px", // Increased padding for mobile
+        transition: "background-color 0.3s ease",
+      },
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
@@ -26,14 +35,27 @@ export const ListConversations = ({
       flexDirection: "column",
       alignItems: "flex-start",
       width: "75%",
+      marginLeft: "20px", // Increased margin for mobile
+      overflow: "hidden",
+    },
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      width: "75%",
       marginLeft: "15px", // Increased margin for mobile
       overflow: "hidden",
     },
     conversationName: {
-      fontSize: "20px", // Increased font size for mobile
+      fontSize: "22px", // Increased font size for mobile
       fontWeight: "bold",
     },
     messagePreview: {
+      fontSize: "20px", // Increased font size for mobile
+      color: "#666",
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+    },
       fontSize: "18px", // Increased font size for mobile
       color: "#666",
       whiteSpace: "nowrap",
@@ -41,6 +63,15 @@ export const ListConversations = ({
       textOverflow: "ellipsis",
     },
     conversationTimestamp: {
+      fontSize: "18px", // Increased font size for mobile
+      color: "#999",
+      width: "25%",
+      textAlign: "right",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-end",
+      justifyContent: "space-between",
+    },
       fontSize: "16px", // Increased font size for mobile
       color: "#999",
       width: "25%",
