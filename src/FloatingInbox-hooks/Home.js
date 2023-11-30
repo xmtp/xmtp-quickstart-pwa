@@ -154,7 +154,7 @@ export default function Home({
   }, [wallet, signer, client]);
 
   const connectWallet = async () => {
-    if (typeof window.ethereum !== "undefined") {
+    if (typeof window.ethereum !== undefined) {
       try {
         await window.ethereum.enable();
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -219,7 +219,7 @@ export default function Home({
     setIsOpen(false);
   };
 
-  if (typeof window !== "undefined") {
+  if (typeof window !== undefined) {
     window.FloatingInbox = {
       open: openWidget,
       close: closeWidget,
@@ -323,12 +323,13 @@ export default function Home({
 }
 
 const ENCODING = "binary";
-
 export const getEnv = () => {
   // "dev" | "production" | "local"
-  return typeof process !== "undefined" && process.env.REACT_APP_XMTP_ENV
-    ? process.env.REACT_APP_XMTP_ENV
-    : "production";
+  if (typeof process !== undefined && process.env.REACT_APP_XMTP_ENV) {
+    return process.env.REACT_APP_XMTP_ENV;
+  } else {
+    return "production";
+  }
 };
 export const buildLocalStorageKey = (walletAddress) => {
   return walletAddress ? `xmtp:${getEnv()}:keys:${walletAddress}` : "";
