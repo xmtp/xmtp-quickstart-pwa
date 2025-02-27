@@ -1,3 +1,12 @@
+![Status](https://img.shields.io/badge/Deprecated-brown)
+
+> [!CAUTION]
+> This repo is no longer maintained.
+
+The documentation below is provided for historical reference only.
+
+---
+
 # XMTP Quickstart PWA
 
 ![xmtp](https://github.com/xmtp/xmtp-quickstart-reactjs/assets/1447073/3f2979ec-4d13-4c3d-bf20-deab3b2ffaa1)
